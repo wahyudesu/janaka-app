@@ -5,6 +5,7 @@ import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { Trophy, Medal, Award, Crown, Star, Zap, Target, Gift } from "lucide-react"
 import Link from "next/link"
+import Header from "@/components/navbar"
 
 // Mock data for leaderboard
 const leaderboardData = [
@@ -109,6 +110,7 @@ export default function LeaderboardPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
+      <Header />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
@@ -146,9 +148,8 @@ export default function LeaderboardPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex justify-center items-center mb-2">
                       <span className="text-sm text-muted-foreground">Level {user.level}</span>
-                      <span className="text-sm text-muted-foreground">{user.xpToNext} XP to next</span>
                     </div>
                     <Progress value={(user.xpToNext / user.totalXp) * 100} className="h-2" />
                   </div>
@@ -208,7 +209,6 @@ export default function LeaderboardPage() {
                     <div className="flex items-center space-x-8">
                       <div className="text-center hidden sm:block">
                         <div className="text-lg font-bold text-foreground">Level {user.level}</div>
-                        <div className="text-sm text-muted-foreground">{user.xpToNext} XP to next</div>
                       </div>
 
                       <div className="text-center">

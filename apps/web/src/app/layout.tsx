@@ -38,8 +38,7 @@ export default function RootLayout({
 				   className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
 			>
 				<Providers>
-					<div className="grid grid-rows-[auto_1fr] h-svh">
-						<Header />
+					<div className="grid grid-rows-[1fr] h-svh">
 						{children}
 					</div>
 				</Providers>

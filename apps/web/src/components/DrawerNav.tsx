@@ -12,7 +12,7 @@ import { headerNavLinks } from './navbar';
 export default function DrawerNav() {
   return (
     <Drawer.Root direction="right">
-      <Drawer.Trigger>
+      <Drawer.Trigger asChild>
         <Button variant="outline" size="icon" className="sm:hidden w-9 h-9">
           <AlignJustify />
         </Button>
@@ -23,28 +23,26 @@ export default function DrawerNav() {
           className="right-2 top-2 bottom-2 fixed z-10 outline-none w-[310px] flex"
           style={{ '--initial-transform': 'calc(100% + 8px)' } as React.CSSProperties}
         >
-          <div className="bg-white dark:bg-zinc-900 h-full w-full pt-4 px-4 flex flex-col rounded-[16px]">
+          <div className="bg-background h-full w-full pt-4 px-4 flex flex-col rounded-[16px]">
             <div className="flex justify-between items-center border-b pb-1">
               <span className="text-2xl pt-2 font-bold tracking-widest text-gray-900 dark:text-gray-100 justify-end">
                 Menu
               </span>
-              <Drawer.Close>
-                <div className="py-2">
+              <Drawer.Close asChild>
+                <span className="py-2 cursor-pointer">
                   <X size={22} />
-                </div>
+                </span>
               </Drawer.Close>
             </div>
             <nav className="mt-3 flex flex-col space-y-4 items-start">
               {headerNavLinks.map((link, index) => (
                 <Drawer.Close key={link.title} asChild>
-                  <div>
-                    <LettersPullUp
-                      text={link.title}
-                      className="text-2xl font-medium text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
-                      delay={index * 0.05} // Delay untuk setiap baris link
-                      href={link.href} // Teruskan href ke LettersPullUp
-                    />
-                  </div>
+                  <LettersPullUp
+                    text={link.title}
+                    className="text-2xl font-medium text-gray-900 hover:text-red-500 hover:underline underline-offset-4 dark:text-gray-100 dark:hover:text-red-500"
+                    delay={index * 0.05}
+                    href={link.href}
+                  />
                 </Drawer.Close>
               ))}
             </nav>
@@ -90,7 +88,7 @@ function LettersPullUp({
 
   return (
     <Link
-      href="/leaderboard"
+      href={href as any}
       onClick={(e) => {
         e.stopPropagation(); // Mencegah event klik menyebar ke Drawer.Close
         document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })); // Tutup drawer
@@ -105,7 +103,7 @@ function LettersPullUp({
             variants={pullupVariant}
             initial="initial"
             animate={isInView ? 'animate' : ''}
-            exit="exit" // Tambahkan animasi exit
+            exit="exit"
             custom={i}
           >
             {current === ' ' ? <span>&nbsp;</span> : current}
