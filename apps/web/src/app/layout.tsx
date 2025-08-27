@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "../index.css";
 import Providers from "@/components/providers";
-import Header from "@/components/header";
+import Header from "@/components/navbar";
+
+
+const poppins = Poppins({
+	variable: "--font-poppins",
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	display: "swap",
+});
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -27,7 +35,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				   className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
 			>
 				<Providers>
 					<div className="grid grid-rows-[auto_1fr] h-svh">
